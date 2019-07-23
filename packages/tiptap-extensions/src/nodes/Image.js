@@ -28,6 +28,9 @@ export default class Image extends Node {
         title: {
           default: null,
         },
+        width: {
+          default: null
+        }
       },
       group: 'inline',
       draggable: true,
@@ -38,6 +41,7 @@ export default class Image extends Node {
             src: dom.getAttribute('src'),
             title: dom.getAttribute('title'),
             alt: dom.getAttribute('alt'),
+            width: dom.getAttribute('width'),
           }),
         },
       ],
@@ -58,11 +62,12 @@ export default class Image extends Node {
   inputRules({ type }) {
     return [
       nodeInputRule(IMAGE_INPUT_REGEX, type, match => {
-        const [, alt, src, title] = match
+        const [, alt, src, title, width] = match
         return {
           src,
           alt,
           title,
+          width
         }
       }),
     ]
